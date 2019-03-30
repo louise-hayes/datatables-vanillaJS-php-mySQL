@@ -1,0 +1,140 @@
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<link rel="stylesheet" type="text/css" href="datatables.min.css" />
+
+<link rel="stylesheet" type = "text/css" href = "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+<script type="text/javascript" src="datatables.min.js"></script>
+
+<script type="text/javascript" src="dataTables.editor.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+
+<!-- https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css
+https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css -->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="editor.dataTables.min.css" />
+
+
+<!-- https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js
+https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js -->
+
+
+<table id="participants" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>First name:</th>
+            <th>Last name:</th>
+            <th>Survey:</th>
+            <th>Zor:</th>
+        </tr>
+    </thead>
+    <trbody>
+        <tr>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>survey</th>
+            <th>zor</th>
+        </tr>
+        <!-- <tr>
+            <th>Louise</th>
+            <th>Hayes</th>
+            <th>9999</th>
+            <th>Starbucks</th>
+        </tr>
+        <tr>
+            <th>Louise</th>
+            <th>Hayes</th>
+            <th>9999</th>
+            <th>Starbucks</th>
+        </tr> -->
+    </trbody>
+</table>
+
+<script>
+    debugger
+    var editor;
+    editor = new $.fn.dataTable.Editor({
+        table: "#participants",
+        ajax: "php/upload.php",
+        fields: [{
+                label: "First name:",
+                name: "first_name"
+            },
+            {
+                label: "Last name:",
+                name: "last_name"
+            },
+            {
+                label: "Survey:",
+                name: "survey"
+            },
+            {
+                label: "Zor:",
+                name: "zor"
+            }
+
+        ]
+    });
+
+    // let data = [
+    //     {
+    //     "first_name": "louise",
+    //     "last_name": "hayes",
+    //     "survey": "survey",
+    //     "zor": "zor",
+    //     },
+    //     {
+    //     "first_name": "louise",
+    //     "last_name": "hayes",
+    //     "survey": "survey",
+    //     "zor": "zor",
+    //     },
+    //     {
+    //     "first_name": "louise",
+    //     "last_name": "hayes",
+    //     "survey": "survey",
+    //     "zor": "zor",
+    //     }
+        
+
+
+    // ];
+    var table = $("#participants").DataTable({
+        dom: "Bfrtip",
+        ajax: "php/upload.php",
+        columns: [
+        
+            {
+                data: "data.first_name"
+            },
+            {
+                data: "data.last_name"
+            },
+            {
+                data: "data.survey"
+            },
+            {
+                data: "data.zor"
+            }
+        ],
+
+
+        select: true,
+        buttons: [{
+                extend: "create",
+                editor: editor
+            },
+            {
+                extend: "edit",
+                editor: editor
+            },
+            {
+                extend: "remove",
+                editor: editor
+            }
+        ]
+    });
+</script>
